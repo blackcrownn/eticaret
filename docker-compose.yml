@@ -1,0 +1,90 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: eticaret-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: eticaret
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - eticaret-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: eticaret-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - eticaret-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    command: redis-server --appendonly yes
+
+  # Spring Boot Backend Application
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: eticaret-backend
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      # Database Configuration
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/eticaret
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 12345
+      
+      # Redis Configuration
+      SPRING_DATA_REDIS_HOST: redis
+      SPRING_DATA_REDIS_PORT: 6379
+      
+      # JWT Configuration
+      JWT_SECRET: MySecretKeyForJWTTokenGenerationThatIsAtLeast256BitsLong123456789
+      JWT_EXPIRATION: 86400000
+      
+      # Spring Profile
+      SPRING_PROFILES_ACTIVE: docker
+      
+      # JVM Options
+      JAVA_OPTS: -Xmx512m -Xms256m
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - eticaret-network
+
+# Volumes for data persistence
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+
+# Networks
+networks:
+  eticaret-network:
+    driver: bridge

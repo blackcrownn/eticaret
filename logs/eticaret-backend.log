@@ -1,0 +1,238 @@
+2025-11-28 19:52:00 [main] INFO  c.e.backend.BackendApplication - Starting BackendApplication using Java 23 with PID 21076 (C:\Users\Ceose\eticaret\backend\target\classes started by Ceose in C:\Users\Ceose\eticaret)
+2025-11-28 19:52:00 [main] DEBUG c.e.backend.BackendApplication - Running with Spring Boot v3.3.0, Spring v6.1.8
+2025-11-28 19:52:00 [main] INFO  c.e.backend.BackendApplication - No active profile set, falling back to 1 default profile: "default"
+2025-11-28 19:52:02 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-11-28 19:52:02 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-28 19:52:02 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 146 ms. Found 5 JPA repository interfaces.
+2025-11-28 19:52:02 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-11-28 19:52:02 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-11-28 19:52:02 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.eticaret.backend.repository.CartItemRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-11-28 19:52:02 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.eticaret.backend.repository.CategoryRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-11-28 19:52:02 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.eticaret.backend.repository.OrderRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-11-28 19:52:02 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.eticaret.backend.repository.ProductRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-11-28 19:52:02 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.eticaret.backend.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-11-28 19:52:02 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 9 ms. Found 0 Redis repository interfaces.
+2025-11-28 19:52:02 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-11-28 19:52:02 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-11-28 19:52:02 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.24]
+2025-11-28 19:52:02 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-11-28 19:52:02 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2410 ms
+2025-11-28 19:52:02 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-28 19:52:03 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2025-11-28 19:52:03 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-11-28 19:52:03 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-28 19:52:03 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-11-28 19:52:03 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4f676900
+2025-11-28 19:52:03 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-11-28 19:52:03 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-28 19:52:04 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-28 19:52:04 [main] DEBUG org.hibernate.SQL - 
+    create table cart_items (
+        id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        updated_at timestamp(6),
+        price numeric(10,2) not null,
+        quantity integer not null check (quantity>=1),
+        cart_id bigint,
+        product_id bigint not null,
+        user_id bigint not null,
+        primary key (id)
+    )
+2025-11-28 19:52:04 [main] DEBUG org.hibernate.SQL - 
+    create table carts (
+        id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        updated_at timestamp(6),
+        active boolean not null,
+        total_amount numeric(10,2) not null,
+        user_id bigint not null,
+        primary key (id)
+    )
+2025-11-28 19:52:04 [main] DEBUG org.hibernate.SQL - 
+    create table categories (
+        id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        updated_at timestamp(6),
+        active boolean not null,
+        description varchar(500),
+        name varchar(100) not null,
+        primary key (id)
+    )
+2025-11-28 19:52:04 [main] DEBUG org.hibernate.SQL - 
+    create table order_items (
+        id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        updated_at timestamp(6),
+        price numeric(10,2) not null,
+        quantity integer not null check (quantity>=1),
+        total_price numeric(10,2) not null,
+        order_id bigint not null,
+        product_id bigint not null,
+        primary key (id)
+    )
+2025-11-28 19:52:04 [main] DEBUG org.hibernate.SQL - 
+    create table orders (
+        id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        updated_at timestamp(6),
+        shipping_address varchar(500),
+        status varchar(20) not null check (status in ('PENDING','CONFIRMED','SHIPPED','DELIVERED','CANCELLED')),
+        total_amount numeric(10,2) not null,
+        user_id bigint not null,
+        primary key (id)
+    )
+2025-11-28 19:52:04 [main] DEBUG org.hibernate.SQL - 
+    create table payments (
+        id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        updated_at timestamp(6),
+        amount numeric(10,2) not null,
+        payment_date timestamp(6),
+        payment_method varchar(20) not null check (payment_method in ('CREDIT_CARD','DEBIT_CARD','PAYPAL','BANK_TRANSFER','CASH_ON_DELIVERY')),
+        status varchar(20) not null check (status in ('PENDING','PROCESSING','COMPLETED','FAILED','REFUNDED','CANCELLED')),
+        transaction_id varchar(100),
+        order_id bigint not null,
+        user_id bigint not null,
+        primary key (id)
+    )
+2025-11-28 19:52:04 [main] DEBUG org.hibernate.SQL - 
+    create table products (
+        id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        updated_at timestamp(6),
+        active boolean not null,
+        description varchar(1000),
+        name varchar(200) not null,
+        price numeric(10,2) not null,
+        sku varchar(100),
+        stock_quantity integer not null check (stock_quantity>=0),
+        category_id bigint,
+        primary key (id)
+    )
+2025-11-28 19:52:04 [main] DEBUG org.hibernate.SQL - 
+    create table users (
+        id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        updated_at timestamp(6),
+        active boolean not null,
+        email varchar(100) not null,
+        first_name varchar(50) not null,
+        last_name varchar(50) not null,
+        password varchar(255) not null,
+        phone varchar(20),
+        primary key (id)
+    )
+2025-11-28 19:52:04 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists payments 
+       drop constraint if exists UKlryndveuwa4k5qthti0pkmtlx
+2025-11-28 19:52:04 [main] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Warning Code: 0, SQLState: 00000
+2025-11-28 19:52:04 [main] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - constraint "uklryndveuwa4k5qthti0pkmtlx" of relation "payments" does not exist, skipping
+2025-11-28 19:52:04 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists payments 
+       add constraint UKlryndveuwa4k5qthti0pkmtlx unique (transaction_id)
+2025-11-28 19:52:04 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists users 
+       drop constraint if exists UK6dotkott2kjsp8vw4d0m25fb7
+2025-11-28 19:52:04 [main] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Warning Code: 0, SQLState: 00000
+2025-11-28 19:52:04 [main] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - constraint "uk6dotkott2kjsp8vw4d0m25fb7" of relation "users" does not exist, skipping
+2025-11-28 19:52:04 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists users 
+       add constraint UK6dotkott2kjsp8vw4d0m25fb7 unique (email)
+2025-11-28 19:52:04 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists cart_items 
+       add constraint FKpcttvuq4mxppo8sxggjtn5i2c 
+       foreign key (cart_id) 
+       references carts
+2025-11-28 19:52:04 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists cart_items 
+       add constraint FK1re40cjegsfvw58xrkdp6bac6 
+       foreign key (product_id) 
+       references products
+2025-11-28 19:52:04 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists cart_items 
+       add constraint FK709eickf3kc0dujx3ub9i7btf 
+       foreign key (user_id) 
+       references users
+2025-11-28 19:52:04 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists carts 
+       add constraint FKb5o626f86h46m4s7ms6ginnop 
+       foreign key (user_id) 
+       references users
+2025-11-28 19:52:04 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists order_items 
+       add constraint FKbioxgbv59vetrxe0ejfubep1w 
+       foreign key (order_id) 
+       references orders
+2025-11-28 19:52:04 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists order_items 
+       add constraint FKocimc7dtr037rh4ls4l95nlfi 
+       foreign key (product_id) 
+       references products
+2025-11-28 19:52:04 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists orders 
+       add constraint FK32ql8ubntj5uh44ph9659tiih 
+       foreign key (user_id) 
+       references users
+2025-11-28 19:52:04 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists payments 
+       add constraint FK81gagumt0r8y3rmudcgpbk42l 
+       foreign key (order_id) 
+       references orders
+2025-11-28 19:52:04 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists payments 
+       add constraint FKj94hgy9v5fw1munb90tar2eje 
+       foreign key (user_id) 
+       references users
+2025-11-28 19:52:04 [main] DEBUG org.hibernate.SQL - 
+    alter table if exists products 
+       add constraint FKog2rp4qthbtt2lfyhfo32lsw9 
+       foreign key (category_id) 
+       references categories
+2025-11-28 19:52:04 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-28 19:52:04 [main] DEBUG c.e.b.s.jwt.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-11-28 19:52:05 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-11-28 19:52:05 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-11-28 19:52:05 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7fd624f5, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1cafb30, org.springframework.security.web.context.SecurityContextHolderFilter@caee26e, org.springframework.security.web.header.HeaderWriterFilter@6345dc06, org.springframework.web.filter.CorsFilter@5cc28282, org.springframework.security.web.authentication.logout.LogoutFilter@264340f0, com.eticaret.backend.security.jwt.JwtAuthenticationFilter@64821706, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7df994ec, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5b6637f3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5a0b925a, org.springframework.security.web.session.SessionManagementFilter@758e6acd, org.springframework.security.web.access.ExceptionTranslationFilter@272cec71, org.springframework.security.web.access.intercept.AuthorizationFilter@4c364a9d]
+2025-11-28 19:52:06 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-11-28 19:52:06 [main] INFO  c.e.backend.BackendApplication - Started BackendApplication in 6.086 seconds (process running for 8.051)
+2025-11-28 19:53:46 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-28 19:53:46 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-11-28 19:53:46 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-11-28 19:53:49 [main] INFO  c.e.backend.BackendApplication - Starting BackendApplication using Java 23 with PID 7224 (C:\Users\Ceose\eticaret\backend\target\classes started by Ceose in C:\Users\Ceose\eticaret)
+2025-11-28 19:53:49 [main] DEBUG c.e.backend.BackendApplication - Running with Spring Boot v3.3.0, Spring v6.1.8
+2025-11-28 19:53:49 [main] INFO  c.e.backend.BackendApplication - No active profile set, falling back to 1 default profile: "default"
+2025-11-28 19:53:49 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-11-28 19:53:49 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-28 19:53:50 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 175 ms. Found 5 JPA repository interfaces.
+2025-11-28 19:53:50 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-11-28 19:53:50 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-11-28 19:53:50 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.eticaret.backend.repository.CartItemRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-11-28 19:53:50 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.eticaret.backend.repository.CategoryRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-11-28 19:53:50 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.eticaret.backend.repository.OrderRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-11-28 19:53:50 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.eticaret.backend.repository.ProductRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-11-28 19:53:50 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.eticaret.backend.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2025-11-28 19:53:50 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 9 ms. Found 0 Redis repository interfaces.
+2025-11-28 19:53:50 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-11-28 19:53:50 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-11-28 19:53:50 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.24]
+2025-11-28 19:53:50 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-11-28 19:53:50 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1634 ms
+2025-11-28 19:53:50 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-28 19:53:50 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2025-11-28 19:53:50 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-11-28 19:53:51 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-28 19:53:51 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-11-28 19:53:51 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6282f1eb
+2025-11-28 19:53:51 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-11-28 19:53:51 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-28 19:53:52 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-28 19:53:52 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-28 19:53:52 [main] DEBUG c.e.b.s.jwt.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-11-28 19:53:53 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-11-28 19:53:53 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-11-28 19:53:53 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@54151d07, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2e729fea, org.springframework.security.web.context.SecurityContextHolderFilter@64d0b8e3, org.springframework.security.web.header.HeaderWriterFilter@598f6c93, org.springframework.web.filter.CorsFilter@1a345c6c, org.springframework.security.web.authentication.logout.LogoutFilter@70799ca7, com.eticaret.backend.security.jwt.JwtAuthenticationFilter@5ae6119b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7be9582e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6153aca1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6b26839d, org.springframework.security.web.session.SessionManagementFilter@5ba7391b, org.springframework.security.web.access.ExceptionTranslationFilter@6afdb486, org.springframework.security.web.access.intercept.AuthorizationFilter@6cb2d5ea]
+2025-11-28 19:53:54 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-11-28 19:53:54 [main] INFO  c.e.backend.BackendApplication - Started BackendApplication in 5.495 seconds (process running for 6.244)
+2025-11-28 22:53:51 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-28 22:53:51 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-11-28 22:53:51 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
